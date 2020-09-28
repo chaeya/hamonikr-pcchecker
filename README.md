@@ -40,17 +40,19 @@ issues](https://img.shields.io/github/issues/2020-Invesum-Internship/hamonikr-pc
 
 ## 데비안 패키지 빌드
 
-다운로드 받은 디렉토리 안에서 아래와 같이 빌드하면 release 폴더 안에 설치 가능한 데비안 파일이 생성됩니다.
+다운로드 받은 디렉토리 안에서 아래와 같이 빌드하면 
+소스코드 상위의 폴더에 설치 가능한 데비안 파일이 생성됩니다.
 
 ```
-./build
+cd hamonikr-pcchecker
+dpkg-buildpackage -T clean
+dpkg-buildpackage -us -uc -i
 ```
 
 ## HamoniKR PC Checker 설치
 
 ```
-sudo dpkg -i release/*.deb
-
+sudo dpkg -i ../hamonikr-pcchecker*.deb
 ```
 
 ## HamoniKR PC Checker 삭제
