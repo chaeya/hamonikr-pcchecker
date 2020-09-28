@@ -1,3 +1,9 @@
+hamonikr-pcchecker (1.0.1) bionic; urgency=low
+
+  * change notify app
+
+ -- Kevin Kim <chaeya@gmail.com>  Mon, 28 Sep 2020 16:08:31 +0900
+
 hamonikr-pcchecker (1.0.0) bionic; urgency=low
 
   * Initial implementation

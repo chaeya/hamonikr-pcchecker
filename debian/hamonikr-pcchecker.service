@@ -4,7 +4,7 @@ Wants=hamonikr-pcchecker.timer
 
 [Service]
 Type=simple
-ExecStart=/usr/local/bin/notify.py
+ExecStart=/usr/local/bin/pcchecker_notify.py
 
 [Install]
 WantedBy=graphical.target

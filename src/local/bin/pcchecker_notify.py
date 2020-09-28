@@ -49,7 +49,7 @@ def show_notify():
         notify2.init('PC Checker')
         title = 'PC Checker'
         body = '메세지 테스트 입니다.\r\nPC 점검결과 이상이 없습니다.\r\n\r\nhttps://hamonikr.org'        
-        iconfile = '/home/hamonikr/workspaces/hamonikr-pcchecker/debian/usr/share/icons/hicolor/256x256/apps/pcchecker.png'
+        iconfile = '/usr/share/icons/hicolor/256x256/apps/pcchecker.png'
         notify = notify2.Notification(title, body, iconfile)
         notify.show()
 
