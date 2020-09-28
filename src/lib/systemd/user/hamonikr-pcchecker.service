@@ -1,5 +1,6 @@
 [Unit]
 Description=HamoniKR PC Checker Application Service
+Before=graphical-session-pre.target
 Wants=hamonikr-pcchecker.timer
 
 [Service]
@@ -7,4 +8,4 @@ Type=simple
 ExecStart=/usr/local/bin/pcchecker_notify.py
 
 [Install]
-WantedBy=graphical.target
+WantedBy=graphical-session-pre.target

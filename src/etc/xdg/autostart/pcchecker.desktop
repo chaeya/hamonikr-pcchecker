@@ -1,0 +1,7 @@
+[Desktop Entry]
+Version=1.0
+Name=pcchecker-notify
+Type=Application
+Exec=gnome-terminal -e "bash -c 'systemctl --user start hamonikr-pcchecker'"
+Terminal=false
+Categories=Application;

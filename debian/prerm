@@ -9,14 +9,6 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ] ; then
         sudo su $cuid -c "systemctl --user disable hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
     fi
 
-    if [ -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.service ] ; then
-        rm -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.service  >/dev/null || true
-    fi
-
-    if [ -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.timer ] ; then
-        rm -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.timer  >/dev/null || true
-    fi    
-
     if [ -x "/bin/systemctl" ] ; then
         systemctl daemon-reload  >/dev/null || true
         systemctl reset-failed  >/dev/null || true
@@ -24,3 +16,5 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ] ; then
 
     gtk-update-icon-cache
 fi
+
+exit 0
