@@ -1,0 +1,17 @@
+#!/bin/sh
+set -e
+
+cuid=`echo $(logname 2>/dev/null || echo $SUDO_USER)`
+
+if [ -d /home/$cuid/.config/systemd/user ] ; then
+    sudo su $cuid -c "ln -sf /lib/systemd/system/hamonikr-pcchecker.service /home/${cuid}/.config/systemd/user/hamonikr-pcchecker.service"  >/dev/null || true
+    sudo su $cuid -c "ln -sf /lib/systemd/system/hamonikr-pcchecker.timer /home/${cuid}/.config/systemd/user/hamonikr-pcchecker.timer" >/dev/null || true
+fi
+
+if [ -x /bin/systemctl ] ; then
+    systemctl daemon-reload  >/dev/null || true
+    sudo su $cuid -c "systemctl --user --now enable hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
+fi
+
+gtk-update-icon-cache
+

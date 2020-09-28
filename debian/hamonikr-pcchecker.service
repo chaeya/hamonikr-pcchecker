@@ -1,0 +1,10 @@
+[Unit]
+Description=HamoniKR PC Checker Application Service
+Wants=hamonikr-pcchecker.timer
+
+[Service]
+Type=simple
+ExecStart=/usr/local/bin/notify.py
+
+[Install]
+WantedBy=graphical.target

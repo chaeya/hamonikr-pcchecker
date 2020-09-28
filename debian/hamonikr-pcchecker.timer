@@ -1,0 +1,12 @@
+[Unit]
+Description=Run pcchecker servie every 2 sec
+Requires=hamonikr-pcchecker.service
+
+[Timer]
+Unit=hamonikr-pcchecker.service
+OnUnitInactiveSec=5s
+RandomizedDelaySec=5s
+AccuracySec=1s
+
+[Install]
+WantedBy=timers.target

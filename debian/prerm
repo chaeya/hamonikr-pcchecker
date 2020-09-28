@@ -1,0 +1,26 @@
+#!/bin/sh
+set -e
+
+if [ "$1" = "remove" ] || [ "$1" = "purge" ] ; then
+    cuid=`echo $(logname 2>/dev/null || echo $SUDO_USER)`
+
+    if [ -x "/bin/systemctl" ] ; then
+        sudo su $cuid -c "systemctl --user stop hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
+        sudo su $cuid -c "systemctl --user disable hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
+    fi
+
+    if [ -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.service ] ; then
+        rm -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.service  >/dev/null || true
+    fi
+
+    if [ -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.timer ] ; then
+        rm -f /home/$cuid/.config/systemd/user/hamonikr-pcchecker.timer  >/dev/null || true
+    fi    
+
+    if [ -x "/bin/systemctl" ] ; then
+        systemctl daemon-reload  >/dev/null || true
+        systemctl reset-failed  >/dev/null || true
+    fi
+
+    gtk-update-icon-cache
+fi
