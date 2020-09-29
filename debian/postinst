@@ -9,5 +9,3 @@ if [ -x /bin/systemctl ] ; then
 fi
 
 gtk-update-icon-cache
-
-exit 0

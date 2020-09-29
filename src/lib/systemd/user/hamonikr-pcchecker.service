@@ -1,11 +1,17 @@
 [Unit]
 Description=HamoniKR PC Checker Application Service
-Before=graphical-session-pre.target
+PartOf=graphical-session.target
+After=gnome-session.service
 Wants=hamonikr-pcchecker.timer
 
 [Service]
-Type=simple
-ExecStart=/usr/local/bin/pcchecker_notify.py
+Type=oneshot
+ExecStart=/bin/sh -ec ' \
+    /usr/bin/python3 /usr/local/bin/pcchecker_notify.py || true; \
+        for v in DBUS_SESSION_BUS_ADDRESS DISPLAY XAUTHORITY; do \
+            dbus-update-activation-environment --systemd $$v; \
+        done; \
+    fi'
 
 [Install]
-WantedBy=graphical-session-pre.target
+WantedBy=graphical-session.target

@@ -6,7 +6,7 @@ import sys
 import importlib.util
 import datetime
 
-logfile = '/tmp/pcchecker.log'
+logfile = 'pcchecker.log'
 logger = logging.getLogger("crumbs")
 logger.setLevel(logging.DEBUG)
 formatter = logging.Formatter('[%(levelname)s|%(filename)s:%(lineno)s] %(asctime)s > %(message)s')
@@ -16,8 +16,7 @@ fileHandler.setFormatter(formatter)
 streamHandler.setFormatter(formatter)
 logger.addHandler(fileHandler)
 logger.addHandler(streamHandler)
-
-logger.debug('Program Running...')
+# logger.debug('Program Running...')
 
 def install_and_import(package):
     import importlib
@@ -28,15 +27,6 @@ def install_and_import(package):
         pip.main(['install', package])
     finally:
         globals()[package] = importlib.import_module(package)
-
-reqs = subprocess.check_output([sys.executable, '-m', 'pip', 'freeze'])
-installed_packages = [r.decode().split('==')[0] for r in reqs.split()]
-# print(installed_packages) //DEBUG
-
-# if 'notify2' in installed_packages:
-if (importlib.util.find_spec('notify2')) is None:
-    print('notify2 is not installed')
-    install_and_import('notify2')
 
 def show_notify():
     try:

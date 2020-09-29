@@ -5,8 +5,8 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ] ; then
     cuid=`echo $(logname 2>/dev/null || echo $SUDO_USER)`
 
     if [ -x "/bin/systemctl" ] ; then
-        sudo su $cuid -c "systemctl --user stop hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
-        sudo su $cuid -c "systemctl --user disable hamonikr-pcchecker.service hamonikr-pcchecker.timer"  >/dev/null || true
+        sudo su $cuid -c "systemctl --user stop hamonikr-pcchecker.service hamonikr-pcchecker.timer" >/dev/null || true
+        sudo su $cuid -c "systemctl --user disable hamonikr-pcchecker.service hamonikr-pcchecker.timer" >/dev/null || true
     fi
 
     if [ -x "/bin/systemctl" ] ; then
@@ -16,5 +16,3 @@ if [ "$1" = "remove" ] || [ "$1" = "purge" ] ; then
 
     gtk-update-icon-cache
 fi
-
-exit 0

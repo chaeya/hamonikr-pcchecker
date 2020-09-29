@@ -1,3 +1,4 @@
 src/local usr
 src/share usr
 src/lib usr
+src/etc/* etc/
